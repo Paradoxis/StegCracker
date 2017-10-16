@@ -1,0 +1,34 @@
+#!/bin/bash
+echo "StegCracker - (https://github.com/Paradoxis/StegCracker)"
+echo "Copyright (c) $(date +%Y) - Luke Paris (Paradoxis)"
+echo
+
+# Print usage / Load arguments
+if [ $# -eq 0 ]; then
+    echo "Usage: $0 <file> [<wordlist>]"
+    exit 1
+else
+    wordlist=${2:-/usr/share/wordlists/rockyou.txt}
+    echo "Attacking file '$1' with wordlist '$wordlist'.."
+fi
+
+# Ensure we don't accidentally overwrite a file
+if [ -f $1.out ]; then
+   echo -e "\e[31mError:\e[0m Output file '$1.out' already exists!"
+   exit 1
+fi
+
+# Crack the file and quit upon finding the right one
+while read pass; do
+    if steghide extract -sf $1 -xf $1.out -p "$pass" -f > /dev/null 2>&1; then
+        echo "Successfully cracked file with password: $pass"
+        echo "Your file has been written to: $1.out"
+        exit 0
+    else
+        echo -en "Attempted: $pass\033[0K\r"
+    fi
+done < $wordlist
+
+# If we didn't exit before this point, we probably failed
+echo "Failed to crack file, ran out of passwords."
+exit 1
