@@ -22,17 +22,7 @@ $ sudo chmod +x /bin/stegcracker
 ```
 
 ## Example
-```bash
-$ stegcracker image.jpg wordlist.txt
-StegCracker - (https://github.com/Paradoxis/StegCracker)
-Copyright (c) 2017 - Luke Paris (Paradoxis)
-
-Attacking file 'bug.jpg' with wordlist '/usr/share/wordlists/rockyou.txt'..
-Successfully cracked file with password: password
-Your file has been written to: image.jpg.out 
-```
-
-![demo](steghide.gif)
+![demo](stegcracker.gif)
 
 ## License
 Copyright 2017 - Luke Paris (Paradoxis)
