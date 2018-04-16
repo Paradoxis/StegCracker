@@ -12,6 +12,12 @@ else
     echo "Attacking file '$1' with wordlist '$wordlist'.."
 fi
 
+# Ensure the input file exists
+if [ ! -f $1 ]; then
+   echo -e "\e[31mError:\e[0m File '$1' does not exist!"
+   exit 1
+fi
+
 # Ensure we don't accidentally overwrite a file
 if [ -f $1.out ]; then
    echo -e "\e[31mError:\e[0m Output file '$1.out' already exists!"
