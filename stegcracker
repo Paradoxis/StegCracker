@@ -14,13 +14,19 @@ fi
 
 # Ensure the input file exists
 if [ ! -f $1 ]; then
-   echo -e "\e[31mError:\e[0m File '$1' does not exist!"
+   echo -e "\x1B[31mError:\x1B[0m File '$1' does not exist!"
    exit 1
+fi
+
+# Ensure the file is steghide compatible
+if [[ ! $(echo "jpg jpeg bmp wav au" | grep -i "${1##*.}") ]]; then
+    echo -e "\x1B[31mError:\x1B[0m Unsupported file type '${1##*.}'! Supported extensions: jpg, jpeg, bmp, wav, au"
+    exit 1
 fi
 
 # Ensure we don't accidentally overwrite a file
 if [ -f $1.out ]; then
-   echo -e "\e[31mError:\e[0m Output file '$1.out' already exists!"
+   echo -e "\x1B[31mError:\x1B[0m Output file '$1.out' already exists!"
    exit 1
 fi
 
@@ -36,5 +42,5 @@ while read pass; do
 done < $wordlist
 
 # If we didn't exit before this point, we probably failed
-echo "Failed to crack file, ran out of passwords."
+echo "\x1B[31mError:\x1B[0m Failed to crack file, ran out of passwords."
 exit 1
