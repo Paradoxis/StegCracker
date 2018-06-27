@@ -22,7 +22,6 @@ if [[ ! $(which steghide) ]]; then
     exit 1
 fi
 
-
 # Ensure the input file exists
 if [ ! -f $1 ]; then
    echo -e "\x1B[31mError:\x1B[0m File '$1' does not exist!"
