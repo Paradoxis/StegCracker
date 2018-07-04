@@ -1,11 +1,18 @@
 #!/bin/bash
-echo "StegCracker - (https://github.com/Paradoxis/StegCracker)"
+PROJECT_URL="https://github.com/Paradoxis/StegCracker"
+UPDATE_URL="https://raw.githubusercontent.com/Paradoxis/StegCracker/master/stegcracker"
+
+# Print banner
+echo "StegCracker - ($PROJECT_URL)"
 echo "Copyright (c) $(date +%Y) - Luke Paris (Paradoxis)"
 echo
 
 # Print usage / Load arguments
 if [ $# -eq 0 ]; then
     echo "Usage: $0 <file> [<wordlist>]"
+    echo "Options:"
+    echo "  --update | Updates StegCracker to the latest version"
+    echo
     exit 1
 else
     wordlist=${2:-/usr/share/wordlists/rockyou.txt}
@@ -20,6 +27,19 @@ if [[ ! $(which steghide) ]]; then
     fi
 
     exit 1
+fi
+
+# Is the user trying to update StegCracker?
+if [ ! -f $1 ] && [ $1 = "--update" ]; then
+    echo -n "Updating StegCracker to the latest version.. "
+
+    if $(curl -s $UPDATE_URL > $(which $0)); then
+        echo -e "\x1B[32mDONE\x1B[0m"
+        exit
+    else
+        echo -e "\x1B[31mFAILED\x1B[0m"
+        exit 1
+    fi
 fi
 
 # Ensure the input file exists
