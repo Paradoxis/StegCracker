@@ -12,7 +12,6 @@ if [ $# -eq 0 ]; then
     echo "Usage: $0 <file> [<wordlist>]"
     echo "Options:"
     echo "  --update | Updates StegCracker to the latest version"
-    echo
     exit 1
 else
     wordlist=${2:-/usr/share/wordlists/rockyou.txt}
