@@ -70,8 +70,9 @@ while read pass; do
     else
         echo -en "Attempted: $pass\033[0K\r"
     fi
-done < $wordlist
+done < <(grep "" $wordlist)
 
 # If we didn't exit before this point, we probably failed
-echo "\x1B[31mError:\x1B[0m Failed to crack file, ran out of passwords."
+echo -e "\x1B[31mError:\x1B[0m Failed to crack file, ran out of passwords."
 exit 1
+
