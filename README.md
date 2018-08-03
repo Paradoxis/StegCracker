@@ -10,8 +10,6 @@ rockyou.txt password file which ships with Kali Linux or can be downloaded [here
 $ stegcracker <file> [<wordlist>]
 ```
 
-## 
-
 ## Installation
 To install the program, follow these steps:
 
@@ -20,6 +18,12 @@ $ sudo apt-get install steghide -y
 $ sudo curl https://raw.githubusercontent.com/Paradoxis/StegCracker/master/stegcracker > /bin/stegcracker
 $ sudo chmod +x /bin/stegcracker
 ```
+
+## Updating
+To update the program, simply pass the `--update` argument instead of a 
+file name.
+![updating](stegcracker-update.gif)
+
 
 ## Example
 ![demo](stegcracker.gif)
