@@ -19,14 +19,13 @@ $ sudo curl https://raw.githubusercontent.com/Paradoxis/StegCracker/master/stegc
 $ sudo chmod +x /bin/stegcracker
 ```
 
-## Updating
-To update the program, simply pass the `--update` argument instead of a 
-file name.
-![updating](stegcracker-update.gif)
-
-
 ## Example
 ![demo](stegcracker.gif)
+
+## Updating
+To update the program, simply pass the `--update` argument instead of a file name.
+![updating](stegcracker-update.gif)
+
 
 ## License
 Copyright 2017 - Luke Paris (Paradoxis)
