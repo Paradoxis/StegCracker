@@ -15,8 +15,8 @@ To install the program, follow these steps:
 
 ```
 $ sudo apt-get install steghide -y
-$ sudo curl https://raw.githubusercontent.com/Paradoxis/StegCracker/master/stegcracker > /bin/stegcracker
-$ sudo chmod +x /bin/stegcracker
+$ sudo curl https://raw.githubusercontent.com/Paradoxis/StegCracker/master/stegcracker > /usr/local/bin/stegcracker
+$ sudo chmod +x /usr/local/bin/stegcracker
 ```
 
 ## Updating
