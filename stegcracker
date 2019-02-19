@@ -41,6 +41,20 @@ if [ ! -f $1 ] && [ $1 = "--update" ]; then
     fi
 fi
 
+# Count number of entries in the current wordlist
+line_count=$(wc -l "$wordlist" | cut -d ' ' -f 1)
+
+if [[ "$?" -ne "0" ]]; then
+    echo -e "\x1B[31mError:\x1B[0m Failed to count number of lines in wordlist '$wordlist'!"
+    exit 1
+fi
+
+# Check if the wordlist has at least one entry
+if [[ "$line_count" -le "0" ]]; then
+    echo -e "\x1B[31mError:\x1B[0m Wordlist '$wordlist' appears to be empty."
+    exit 1
+fi
+
 # Ensure the input file exists
 if [ ! -f $1 ]; then
    echo -e "\x1B[31mError:\x1B[0m File '$1' does not exist!"
@@ -59,48 +73,26 @@ if [ -f $1.out ]; then
    exit 1
 fi
 
-# Crack the file and quit upon finding the right one
+# Print message indicating we've started cracking the file
 echo "Attacking file '$1' with wordlist '$wordlist'.."
 
-# try to count wordlist line numbers
-wcOutput=$(wc -l $wordlist)
-STATUS=$?
-if [[ "$STATUS" -ne "0" ]]; then
-    echo "Error openning file '$wordlist'"
-    exit 1
-fi
-
-# good practice to save the regex into a variable
-regex="([0-9]+).$wordlist"
-
-# apply the regex to extract only the line numbers from wc output
-[[ $wcOutput =~ $regex ]]
-
-# get the result from group 1
-fileSize="${BASH_REMATCH[1]}"
-
-# check if the wordlist has at least one entry
-if [[ "$fileSize" -le "0" ]]; then
-    echo "Invalid file '$wordlist': not enough entries"
-    exit 1
-fi
-
 while read pass; do
-    # progress feedback
-    line=$((line + 1))
-    progress=$((line * 100 / fileSize))
 
+    # Calculate progress
+    line=$((line + 1))
+    progress=$((line * 100 / line_count))
+
+    # Crack the file and quit upon finding the right one
     if steghide extract -sf $1 -xf $1.out -p "$pass" -f > /dev/null 2>&1; then
         echo "Successfully cracked file with password: $pass"
         echo "Tried $line passwords"
         echo "Your file has been written to: $1.out"
         exit 0
     else
-        echo -en "$line/$fileSize ($progress%) Attempted: $pass\033[0K\r"
+        echo -en "$line/$line_count ($progress%) Attempted: $pass\033[0K\r"
     fi
 done < <(grep "" $wordlist)
 
 # If we didn't exit before this point, we probably failed
 echo -e "\x1B[31mError:\x1B[0m Failed to crack file, ran out of passwords."
 exit 1
-
