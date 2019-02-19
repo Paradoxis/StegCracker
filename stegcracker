@@ -62,13 +62,41 @@ fi
 # Crack the file and quit upon finding the right one
 echo "Attacking file '$1' with wordlist '$wordlist'.."
 
+# try to count wordlist line numbers
+wcOutput=$(wc -l $wordlist)
+STATUS=$?
+if [[ "$STATUS" -ne "0" ]]; then
+    echo "Error openning file '$wordlist'"
+    exit 1
+fi
+
+# good practice to save the regex into a variable
+regex="([0-9]+).$wordlist"
+
+# apply the regex to extract only the line numbers from wc output
+[[ $wcOutput =~ $regex ]]
+
+# get the result from group 1
+fileSize="${BASH_REMATCH[1]}"
+
+# check if the wordlist has at least one entry
+if [[ "$fileSize" -le "0" ]]; then
+    echo "Invalid file '$wordlist': not enough entries"
+    exit 1
+fi
+
 while read pass; do
+    # progress feedback
+    line=$((line + 1))
+    progress=$((line * 100 / fileSize))
+
     if steghide extract -sf $1 -xf $1.out -p "$pass" -f > /dev/null 2>&1; then
         echo "Successfully cracked file with password: $pass"
+        echo "Tried $line passwords"
         echo "Your file has been written to: $1.out"
         exit 0
     else
-        echo -en "Attempted: $pass\033[0K\r"
+        echo -en "$line/$fileSize ($progress%) Attempted: $pass\033[0K\r"
     fi
 done < <(grep "" $wordlist)
 
