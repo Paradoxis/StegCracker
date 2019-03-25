@@ -1,0 +1,10 @@
+rockyou.tar.gz
+rockyou.txt
+.idea/
+*.egg-info
+venv/
+__pycache__/
+**.pyc
+**/*.out
+build/
+dist/
