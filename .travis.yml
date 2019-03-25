@@ -6,8 +6,11 @@ python:
   - "3.6"
   - "3.7"
 
+before_install:
+  - sudo apt-get update -y
+  - sudo apt-get install -y steghide
+
 install:
-  - apt-get install -y steghide
   - pip install .[test]
 
 script:
