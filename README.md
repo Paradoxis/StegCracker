@@ -1,4 +1,8 @@
 # StegCracker
+[![Build Status](https://travis-ci.org/Paradoxis/StegCracker.svg?branch=master)](https://travis-ci.org/Paradoxis/StegCracker)
+[![PyPI version](https://badge.fury.io/py/stegcracker.svg)](https://badge.fury.io/py/stegcracker)
+[![codecov](https://codecov.io/gh/Paradoxis/StegCracker/branch/master/graph/badge.svg)](https://codecov.io/gh/Paradoxis/StegCracker)
+
 Steganography brute-force utility to uncover hidden data inside files.
 
 ## Usage
@@ -10,33 +14,36 @@ rockyou.txt password file which ships with Kali Linux or can be downloaded [here
 $ stegcracker <file> [<wordlist>]
 ```
 
-## Installation
-To install the program, follow these steps:
+## Requirements
+The program requires Python 3.6 and the steghide binary to be installed. If 
+python 3.6 is not installed, check out [this](https://unix.stackexchange.com/questions/332641/how-to-install-python-3-6)
+guide on how to do so, and steghide can be installed by using the following command:
 
 ```
 $ sudo apt-get install steghide -y
-$ sudo curl https://raw.githubusercontent.com/Paradoxis/StegCracker/master/stegcracker > /usr/local/bin/stegcracker
-$ sudo chmod +x /usr/local/bin/stegcracker
+```
+
+## Installation
+To install the program, run the following command:
+
+```
+$ pip3.6 install stegcracker
 ```
 
 ## Updating
-To update the program, simply pass the `--update` argument instead of a file name.
+To update the program, simply pass `--update` to the installation command:
 
 ```
-$ sudo stegcracker --update
-StegCracker - (https://github.com/Paradoxis/StegCracker)
-Copyright (c) 2018 - Luke Paris (Paradoxis)
-
-Updating StegCracker to the latest version.. DONE
+$ pip3.6 install stegcracker --update --force-reinstall 
 ```
 
 
 ## Example
-![demo](stegcracker.gif)
+![demo](https://github.com/Paradoxis/StegCracker/raw/master/stegcracker.gif)
 
 
 ## License
-Copyright 2017 - Luke Paris (Paradoxis)
+Copyright 2019 - Luke Paris (Paradoxis)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, 
 including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to 
