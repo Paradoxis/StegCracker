@@ -30,9 +30,8 @@ def main():
     args.add_argument('wordlist', action='store', nargs='?', default='/usr/share/wordlists/rockyou.txt')
     args.add_argument('-o', '--output', default=None)
     args.add_argument('-t', '--threads', type=int, default=16)
-    args.add_argument('-c', '--chunk-size', default=256)
+    args.add_argument('-c', '--chunk-size', type=int, default=256)
     args.add_argument('-q', '--quiet', '--stfu', action='store_true', default=False)
-    args.add_argument('-u', '--update', action='store_true', default=False)
     args.add_argument('-V', '--verbose', action='store_true', default=False)
     args = args.parse_args()
 
