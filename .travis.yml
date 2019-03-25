@@ -1,0 +1,16 @@
+language: python
+
+dist: xenial
+
+python:
+  - "3.6"
+  - "3.7"
+
+install:
+  - apt-get install -y steghide
+  - pip install .[test]
+
+script:
+  - coverage run -m unittest tests --quiet
+  - coverage report --show-missing
+  - codecov
