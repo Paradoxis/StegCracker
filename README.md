@@ -31,10 +31,10 @@ $ pip3 install stegcracker
 ```
 
 ## Updating
-To update the program, simply pass `--update` to the installation command:
+To update the program, simply pass `-U` to the installation command:
 
 ```
-$ pip3 install stegcracker --update --force-reinstall 
+$ pip3 install stegcracker -U --force-reinstall
 ```
 
 
