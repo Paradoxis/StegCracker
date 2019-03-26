@@ -37,6 +37,12 @@ To update the program, simply pass `-U` to the installation command:
 $ pip3 install stegcracker -U --force-reinstall
 ```
 
+## Upgrading from 1.X
+If you're upgrading StegCracker from the original 1.X release, please remove the existing version first:
+
+```
+$ sudo rm --force $(which stegcracker)
+```
 
 ## Example
 ![demo](https://github.com/Paradoxis/StegCracker/raw/master/stegcracker.gif)
