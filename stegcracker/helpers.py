@@ -1,4 +1,5 @@
 import sys
+from argparse import HelpFormatter
 from functools import lru_cache
 from io import BytesIO
 
@@ -56,3 +57,17 @@ class DevNull(BytesIO):
     def write(self, *_): pass
 
     def read(self, *_): return b''
+
+
+class CustomHelpFormatter(HelpFormatter):
+    def __init__(self, prog):
+        super().__init__(prog, indent_increment=2, max_help_position=7, width=None)
+
+    # noinspection PyProtectedMember
+    def _format_action(self, action):
+        result = super(CustomHelpFormatter, self)._format_action(action) + "\n"
+
+        if 'show this help message and exit' in result:
+            result = result.replace('show', 'Show', 1)
+
+        return result
