@@ -82,7 +82,7 @@ class Cracker:
         while any(passwords) and not self.password and not self.has_error:
             for password in passwords:
                 if isinstance(password, bytes):
-                    password = b2s(password)
+                    password = b2s(password).strip()
 
                 attempts += 1
 
