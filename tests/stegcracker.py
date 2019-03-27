@@ -53,6 +53,15 @@ class CliTestCase(TestCase):
         self.assertNotEqual(code, 0)
 
     @patch.object(cracker.Cracker, 'crack')
+    def test_default_help(self, crack):
+        """Ensure an extended help message when the --help flag is passed"""
+
+        stdout, stderr, code = self.call('--help')
+        self.assertIn('Copyright', stderr.read())
+        self.assertEqual(crack.call_count, 0)
+        self.assertEqual(code, 0)
+
+    @patch.object(cracker.Cracker, 'crack')
     def test_default_quiet(self, crack):
         """Ensure a jpg image can be cracked"""
 
