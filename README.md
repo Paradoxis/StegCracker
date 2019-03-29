@@ -49,7 +49,7 @@ $ sudo rm --force $(which stegcracker)
 ```
 
 ## Looking for the old version?
-While I reccomended using the latest and greatest version, you might want to install the older version of StegCracker (you might not be able to install Python 3.6 on your platform, or you're just feeling nostalgic, I don't blame you). You can do this by downloading it from the [v1.0.0 tag](https://github.com/Paradoxis/StegCracker/blob/v1.0.0/stegcracker) _(note: all issues or pull requests regarding this version will be be ignored)_.
+While I reccomended using the latest and greatest version, you might want to install the older version of StegCracker (you might not be able to install Python 3.6 on your platform, or you're just feeling nostalgic, I don't blame you). You can download it from the [v1.0.0 tag](https://github.com/Paradoxis/StegCracker/blob/v1.0.0/stegcracker) _(note: all issues or pull requests regarding this version will be be ignored)_.
 
 ## License
 Copyright 2019 - Luke Paris (Paradoxis)
