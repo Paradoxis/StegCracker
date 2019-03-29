@@ -37,6 +37,10 @@ To update the program, simply pass `-U` to the installation command:
 $ pip3 install stegcracker -U --force-reinstall
 ```
 
+## Example
+
+![demo](https://github.com/Paradoxis/StegCracker/raw/master/stegcracker.gif)
+
 ## Upgrading from 1.X
 If you're upgrading StegCracker from the original 1.X release, please remove the existing version first:
 
@@ -44,9 +48,8 @@ If you're upgrading StegCracker from the original 1.X release, please remove the
 $ sudo rm --force $(which stegcracker)
 ```
 
-## Example
-![demo](https://github.com/Paradoxis/StegCracker/raw/master/stegcracker.gif)
-
+## Looking for the old version?
+While I reccomended using the latest and greatest version, you might want to install the older version of StegCracker (you might not be able to install Python 3.6 on your platform, or you're just feeling nostalgic, I don't blame you). You can do this by downloading it from the [v1.0.0 tag](https://github.com/Paradoxis/StegCracker/blob/v1.0.0/stegcracker) _(note: all issues or pull requests regarding this version will be be ignored)_.
 
 ## License
 Copyright 2019 - Luke Paris (Paradoxis)
