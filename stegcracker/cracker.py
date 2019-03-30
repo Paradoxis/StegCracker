@@ -1,6 +1,7 @@
 import shutil
 import sys
-from itertools import zip_longest, islice
+import time
+from itertools import islice
 from subprocess import Popen, PIPE
 from traceback import print_tb
 from typing import Iterable
@@ -74,6 +75,8 @@ class Cracker:
 
     def crack(self, thread_id):
         """Attempt to crack a number of passwords"""
+        time.sleep(0.1 * thread_id)
+
         attempts = 0
         password = ''
         passwords = self.passwords()
@@ -98,7 +101,7 @@ class Cracker:
 
                     if self.verbose:
                         self.lock.acquire()
-                        sys.stderr.write(f'[Thread {thread_id}]: ')
+                        sys.stderr.write(f'[Thread {thread_id}, password {password!r}]: ')
                         shutil.copyfileobj(b2s_file(proc.stderr), sys.stderr)
                         shutil.copyfileobj(b2s_file(proc.stdout), sys.stderr)
                         self.lock.release()
