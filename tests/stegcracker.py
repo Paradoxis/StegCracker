@@ -54,15 +54,14 @@ class CliTestCase(TestCase):
 
     @patch.object(cracker.Cracker, 'crack')
     def test_version(self, crack):
-        """Ensure calling -v or --version is posaible and returns the current version number"""
+        """Ensure calling -v or --version is possible and returns the current version number"""
 
         for alias in ('-v', '--version'):
             stdout, stderr, code = self.call(alias)
             stdout = stdout.read().strip()
 
-	    self.assertEqual(stdout, __version__)
-
             self.assertNotIn('Copyright', stderr.read())
+            self.assertEqual(stdout, __version__)
             self.assertEqual(crack.call_count, 0)
             self.assertNotEqual(code, 0)
 
