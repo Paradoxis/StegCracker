@@ -63,7 +63,7 @@ class CliTestCase(TestCase):
             self.assertNotIn('Copyright', stderr.read())
             self.assertEqual(stdout, __version__)
             self.assertEqual(crack.call_count, 0)
-            self.assertNotEqual(code, 0)
+            self.assertEqual(code, 0)
 
     @patch.object(cracker.Cracker, 'crack')
     def test_default_help(self, crack):
