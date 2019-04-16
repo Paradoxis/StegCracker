@@ -10,7 +10,7 @@ from contextlib import redirect_stdout, redirect_stderr
 from uuid import uuid4
 
 import stegcracker
-from stegcracker import __main__ as cli, cracker
+from stegcracker import __main__ as cli, cracker, __version__
 
 
 FILE = 'tests/data/tom.jpg'
@@ -51,6 +51,20 @@ class CliTestCase(TestCase):
         self.assertIn('Copyright', stderr.read())
         self.assertEqual(crack.call_count, 0)
         self.assertNotEqual(code, 0)
+
+    @patch.object(cracker.Cracker, 'crack')
+    def test_version(self, crack):
+        """Ensure calling -v or --version is posaible and returns the current version number"""
+
+        for alias in ('-v', '--version'):
+            stdout, stderr, code = self.call(alias)
+            stdout = stdout.read().strip()
+
+	    self.assertEqual(stdout, __version__)
+
+            self.assertNotIn('Copyright', stderr.read())
+            self.assertEqual(crack.call_count, 0)
+            self.assertNotEqual(code, 0)
 
     @patch.object(cracker.Cracker, 'crack')
     def test_default_help(self, crack):
