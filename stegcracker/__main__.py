@@ -4,7 +4,7 @@ from argparse import ArgumentParser
 from distutils.spawn import find_executable
 from os.path import isfile
 
-from stegcracker import __url__, __description__
+from stegcracker import __url__, __version__, __description__
 from stegcracker.cracker import Cracker
 from stegcracker.helpers import error, wc, handle_interrupt, DevNull, log, CustomHelpFormatter
 
@@ -21,7 +21,10 @@ def main():
 
         sys.stderr = DevNull()
 
-    log(f'StegCracker - ({__url__})',)
+    if any(i in sys.argv for i in ('-v', '--version')):
+        return print(__version__)
+
+    log(f'StegCracker {__version__} - ({__url__})',)
     log(f'Copyright (c) {datetime.now().year} - Luke Paris (Paradoxis)')
     log('')
 
@@ -62,6 +65,9 @@ def main():
         'By default, all logging / error messages are printed to stderr (making '
         'piping to other processes easier).'
     ), default=False)
+
+    args.add_argument('-v', '--version', action='store_true', help=(
+        'Print the current version number and exit.'))
 
     args.add_argument('-V', '--verbose', action='store_true', help=(
         'Runs the program in "verbose mode", this will print additional '
