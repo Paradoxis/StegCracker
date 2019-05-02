@@ -119,9 +119,10 @@ class Cracker:
 
                 print((
                     f"{self.attempts}/{self.line_count} ({percentage:.2f}%) "
-                    f"Attempted: {password[0:20]}".strip()
+                    f"Attempted: {password[0:20].ljust(20, ' ')}".strip()
                 ), end='\r', flush=True, file=sys.stderr)
 
                 self.lock.release()
 
             passwords = self.passwords()
+            attempts = 0
