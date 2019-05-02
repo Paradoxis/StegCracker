@@ -16,14 +16,14 @@ class Cracker:
     SUPPORTED_FILES = ('jpg', 'jpeg', 'bmp', 'wav', 'au')
 
     def __init__(self, file: str, output: str, line_count: int,
-                 threads: int = 8, chuck_size: int = 32, quiet: bool = False,
+                 threads: int = 8, chunk_size: int = 64, quiet: bool = False,
                  verbose: bool = False):
         """
         Cracker constructor
         :param threads: Number of threads to attempt to crack the signature
         :param file: File to (attempt) to crack
         :param output: Output file to write the file to
-        :param chuck_size: Number of passwords to attempt per thread
+        :param chunk_size: Number of passwords to attempt per thread
         """
         self.lock = BoundedSemaphore()
         self.pool = ThreadPool(processes=threads)
@@ -33,7 +33,7 @@ class Cracker:
         self.verbose = verbose
         self.file = file
         self.output = output
-        self.chunk_size = chuck_size
+        self.chunk_size = chunk_size
         self.line_count = line_count or 1
         self.has_error = False
         self.iterable = None

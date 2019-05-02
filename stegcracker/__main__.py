@@ -54,10 +54,10 @@ def main():
         'Number of concurrent threads used to crack passwords with, increasing '
         'this number might lead to better performance. Default: 16'))
 
-    args.add_argument('-c', '--chunk-size', type=int, default=256, help=(
+    args.add_argument('-c', '--chunk-size', type=int, default=64, help=(
         'Number of passwords loaded into memory per thread cycle. After each '
         'password of the chunk has been depleted a status update will be '
-        'printed to the console with the attempted password. Default: 256'))
+        'printed to the console with the attempted password. Default: 64'))
 
     args.add_argument('-q', '--quiet', '--stfu', action='store_true', help=(
         'Runs the program in "quiet mode", meaning no status updates or other '
@@ -112,6 +112,7 @@ def main():
             file=args.file,
             output=output,
             line_count=line_count,
+            chunk_size=args.chunk_size,
             quiet=args.quiet,
             verbose=args.verbose,
             threads=args.threads)
