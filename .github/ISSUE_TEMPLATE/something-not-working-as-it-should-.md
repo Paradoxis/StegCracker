@@ -72,4 +72,5 @@ $ cat /etc/issue
 A picture tells a thousand words, feel free to add one here if you have it
 
 ## Other stuff
-Got any other info I should know about? Feel like ranting about something? Feel free to do it here. Compliments are also welcome ✨
+Got any other info I should know about? Have a monkeypatch or proposed fix? Feel like ranting about something? <br>
+Feel free to do it here. Compliments are also welcome ✨
