@@ -27,14 +27,14 @@ $ sudo apt-get install steghide -y
 To install the program, run the following command:
 
 ```
-$ pip3 install stegcracker
+$ pip3.6 install stegcracker
 ```
 
 ## Updating
 To update the program, simply pass `-U` to the installation command:
 
 ```
-$ pip3 install stegcracker -U --force-reinstall
+$ pip3.6 install stegcracker -U --force-reinstall
 ```
 
 ## Example
