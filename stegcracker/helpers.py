@@ -69,6 +69,11 @@ def print_diagnostic_info():
 
     err = partial(print, file=sys.stderr)
 
+    err('### Command Used')
+    err('```')
+    err('$ ' + (' '.join(sys.argv)))
+    err('```\n')
+
     err('### StegCracker Version')
     err('```')
     err(__version__)

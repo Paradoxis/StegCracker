@@ -35,6 +35,11 @@ Please add the following files / info:
 ## System information
 Please add the output of the following commands:
 
+### Command Used
+```
+$ <the exact command you used to run stegcracker>
+```
+
 ### StegCracker Version
 ```
 $  pip3 freeze | grep stegcracker
