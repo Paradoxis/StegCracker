@@ -96,6 +96,12 @@ def main():
     if not isfile(args.wordlist):
         return error(f'Wordlist {args.wordlist!r} does not exist!')
 
+    if args.wordlist.endswith('.gz'):
+        return error(
+            f"It appears you're using a gzipped variant of a wordlist, instead "
+            f"of the actual wordlist itself. You can decompress the gzipped "
+            f"using the following command: gzip -d {args.wordlist}")
+
     if extension not in Cracker.SUPPORTED_FILES:
         return error(
             f'Unsupported file type {extension!r}! Supported '

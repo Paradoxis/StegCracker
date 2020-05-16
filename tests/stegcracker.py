@@ -17,6 +17,7 @@ FILE = 'tests/data/tom.jpg'
 FILE_MISSING = str(uuid4())
 FILE_INVALID = 'tests/data/tom.php'
 WORDLIST = 'tests/data/tom.txt'
+WORDLIST_GZ = 'tests/data/tom.txt.gz'
 WORDLIST_INVALID = 'tests/data/tom.invalid.txt'
 PASSWORD = 'TOM'
 
@@ -221,6 +222,15 @@ class CliTestCase(TestCase):
 
         finally:
             shutil.rmtree(directory, ignore_errors=True)
+
+    @patch.object(cracker.Cracker, 'crack')
+    def test_gzipped_files_cant_be_used(self, crack):
+        """Ensure if a gzipped file is passed a friendly error message is returned"""
+
+        stdout, stderr, code = self.call(FILE, WORDLIST_GZ)
+        self.assertIn('zipped', stderr.read())
+        self.assertEqual(crack.call_count, 0)
+        self.assertNotEqual(code, 0)
 
     @patch.object(cracker, 'Popen', side_effect=ValueError('Sample error'))
     @patch.object(cracker.ThreadPool, 'terminate')
