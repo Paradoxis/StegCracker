@@ -1,5 +1,1 @@
 blank_issues_enabled: false
-contact_links:
-  - name: Bug Report
-    url: https://github.com/Paradoxis/StegCracker/issues
-    about: Submit your bugs related to this tool here.
