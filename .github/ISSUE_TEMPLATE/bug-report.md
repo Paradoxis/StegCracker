@@ -1,6 +1,6 @@
 ---
-name: Something not working as it should?
-about: Let's get that sorted out shall we? ✨
+name: Bug Report
+about: Let's get that bug fixed, shall we? ✨
 title: ''
 labels: bug
 assignees: Paradoxis

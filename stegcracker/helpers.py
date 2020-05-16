@@ -1,7 +1,8 @@
 import sys
 from argparse import HelpFormatter
-from functools import lru_cache
+from functools import lru_cache, partial
 from io import BytesIO
+from subprocess import check_output, SubprocessError
 
 
 def error(message):
@@ -51,6 +52,48 @@ def handle_interrupt(func):
             print('\n\033[31mError:\033[0m Aborted.')
             return 1
     return wrapper
+
+
+def print_diagnostic_info():
+    """
+    Get info about the current system used in bug reports
+    Please fill out the damn bug reports people, how hard is it
+    """
+    from stegcracker import __version__
+
+    def run(cmd):
+        try:
+            return f'$ {cmd}\n' + check_output(cmd, shell=True).decode()
+        except SubprocessError:
+            return 'unknown'
+
+    err = partial(print, file=sys.stderr)
+
+    err('### StegCracker Version')
+    err('```')
+    err(__version__)
+    err('```\n')
+
+    err('### StegCracker Type')
+    err('```')
+    err(run('file $(which stegcracker)'))
+    err('```\n')
+
+    err('### StegHide Version')
+    err('```')
+    err(run('steghide --version'))
+    err('```\n')
+
+    err('### Python Version')
+    err('```')
+    err(sys.version)
+    err('```\n')
+
+    err('### System Version')
+    err('```')
+    err(run('uname -a'))
+    err(run('cat /etc/issue'))
+    err('```\n')
 
 
 class DevNull(BytesIO):

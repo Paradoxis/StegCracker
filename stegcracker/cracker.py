@@ -9,7 +9,7 @@ from threading import BoundedSemaphore
 from multiprocessing.pool import ThreadPool
 
 from stegcracker import __url__
-from stegcracker.helpers import error, b2s, b2s_file
+from stegcracker.helpers import error, b2s, b2s_file, print_diagnostic_info
 
 
 class Cracker:
@@ -60,10 +60,17 @@ class Cracker:
         error(
             f'Unhandled exception in cracker thread. Please report this issue '
             f'on the official bug tracker: "{__url__}/issues" and don\'t forget '
-            f'to include the following traceback:')
+            f'to include the following traceback and diagnostic info:\n')
 
+        print('## Stack Trace', file=sys.stderr)
+        print('```', file=sys.stderr)
         print(type(exc).__name__ + ': ' + str(exc), file=sys.stderr)
         print_tb(exc.__traceback__, file=sys.stderr)
+        print('```\n', file=sys.stderr)
+
+        print('## System Information', file=sys.stderr)
+        print_diagnostic_info()
+
         self.has_error = True
         self.pool.terminate()
 
