@@ -18,7 +18,7 @@ $ stegcracker <file> [<wordlist>]
 ```
 
 ## Requirements
-The program requires Python 3.6 and the steghide binary to be installed. If 
+The program requires at least Python 3.6 or higher, and the steghide binary to be installed. If 
 python 3.6 is not installed, check out [this](https://unix.stackexchange.com/questions/332641/how-to-install-python-3-6)
 guide on how to do so, and steghide can be installed by using the following command:
 
@@ -30,14 +30,14 @@ $ sudo apt-get install steghide -y
 To install the program, run the following command:
 
 ```
-$ pip3.6 install stegcracker
+$ pip3 install stegcracker
 ```
 
 ## Updating
 To update the program, simply pass `-U` to the installation command:
 
 ```
-$ pip3.6 install stegcracker -U --force-reinstall
+$ pip3 install stegcracker -U --force-reinstall
 ```
 
 ## Example
@@ -51,8 +51,25 @@ If you're upgrading StegCracker from the original 1.X release, please remove the
 $ sudo rm --force $(which stegcracker)
 ```
 
+## FAQ / Troubleshooting
+
+* I can't install the tool with `pip3` but python 3.6+ is installed
+    * Your pip binary might be using a different version of Python. Try installing it 
+      directly through Python like so (replace "X" with your minor version, eg: `python3.6`): 
+      `python3.X -m pip install -U stegcracker`
+
+* Can I run this tool on other systems? 
+    * Yes, as long as you have a valid version of Python 3.6 and steghide in your path
+      it *should* work. Please note that the tool has officially been tested on Kali Linux, all
+      other platforms might be unstable. But if you find a bug on another distro, please
+      submit an issue and I'll see what I can do *(please fill in the template too)*.
+
 ## Looking for the old version?
-While I reccomended using the latest and greatest version, you might want to install the older version of StegCracker (you might not be able to install Python 3.6 on your platform, or you're just feeling nostalgic, I don't blame you). You can download it from the [v1.0.0 tag](https://github.com/Paradoxis/StegCracker/blob/v1.0.0/stegcracker) _(note: all issues or pull requests regarding this version will be be ignored)_.
+While I recommended using the latest and greatest version, you might want to install the older 
+version of StegCracker (you might not be able to install Python 3.6 on your platform, 
+or you're just feeling nostalgic, I don't blame you). You can download it from the 
+[v1.0.0 tag](https://github.com/Paradoxis/StegCracker/blob/v1.0.0/stegcracker) 
+_(note: all issues or pull requests regarding this version will be be ignored)_.
 
 ## License
 Copyright 2019 - Luke Paris (Paradoxis)
