@@ -18,23 +18,23 @@ $ stegcracker <file> [<wordlist>]
 ```
 
 ## Requirements
-The program requires at least Python 3.6 or higher, and the steghide binary to be installed. If 
+The program requires the steghide binary, and Python 3.6 or higher to be installed. If 
 python 3.6 is not installed, check out [this](https://unix.stackexchange.com/questions/332641/how-to-install-python-3-6)
-guide on how to do so, and steghide can be installed by using the following command:
+guide on how to do so. Steghide can be installed by using the following command (Kali Linux):
 
 ```
 $ sudo apt-get install steghide -y
 ```
 
 ## Installation
-To install the program, run the following command:
+To install StegCracker, run the following command:
 
 ```
 $ pip3 install stegcracker
 ```
 
 ## Updating
-To update the program, simply pass `-U` to the installation command:
+To update StegCracker, simply pass `-U` to the installation command:
 
 ```
 $ pip3 install stegcracker -U --force-reinstall
@@ -68,8 +68,9 @@ $ pip3 install stegcracker -U --force-reinstall
       another distro, please submit an issue and I'll see what I can do 
       _(but do fill in the template as well)_.
       
-* Are you adding Windows support?
-    * As far as I know there aren't any steghide releases for Windows, so: no
+* Can I run StegCracker on Windows?
+    * As far as I know there aren't any official steghide releases for Windows, 
+    so as far as I'm aware: no
 
 ## License
 Copyright 2019 - Luke Paris (Paradoxis)
