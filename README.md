@@ -6,9 +6,12 @@
 Steganography brute-force utility to uncover hidden data inside files.
 
 ## Usage
-Using stegcracker is simple, pass a file to it as it's first parameter and optionally pass the path
-to a wordlist of passwords to try as it's second parameter. If this is not set it will default to the
-rockyou.txt password file which ships with Kali Linux or can be downloaded [here](https://github.com/danielmiessler/SecLists/raw/master/Passwords/Leaked-Databases/rockyou.txt.tar.gz).
+Using stegcracker is simple, pass a file to it as it's first parameter and 
+optionally pass the path to a wordlist of passwords to try as it's second 
+parameter. If you don't specify the wordlist, the tool will try to use the 
+built-in rockyou.txt wordlist which ships with Kali Linux. If you are running a 
+different distribution, you can download the rockyou wordlist 
+[here](https://github.com/danielmiessler/SecLists/raw/master/Passwords/Leaked-Databases/rockyou.txt.tar.gz).
 
 ```
 $ stegcracker <file> [<wordlist>]

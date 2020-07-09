@@ -10,8 +10,7 @@ from contextlib import redirect_stdout, redirect_stderr
 from uuid import uuid4
 
 import stegcracker
-from stegcracker import __main__ as cli, cracker, __version__
-
+from stegcracker import __main__ as cli, cracker, __version__, helpers
 
 FILE = 'tests/data/tom.jpg'
 FILE_MISSING = str(uuid4())
@@ -19,6 +18,10 @@ FILE_INVALID = 'tests/data/tom.php'
 WORDLIST = 'tests/data/tom.txt'
 WORDLIST_GZ = 'tests/data/tom.txt.gz'
 WORDLIST_INVALID = 'tests/data/tom.invalid.txt'
+
+ROCKYOU_ONLY_GZ = 'tests/data/rockyou-only-gz.txt'
+ROCKYOU_EXISTS = 'tests/data/rockyou-without-gz.txt'
+
 PASSWORD = 'TOM'
 
 
@@ -250,6 +253,45 @@ class CliTestCase(TestCase):
             self.assertFalse(os.path.isfile(file))
             self.assertGreater(popen.call_count, 0)
             self.assertGreater(terminate.call_count, 0)
+
+        finally:
+            shutil.rmtree(directory, ignore_errors=True)
+
+    @patch.object(helpers, 'check_output')
+    def test_print_diagnostic_info_subprocess_error(self, check_output):
+        """Subprocess errors in print diagnostic info should return 'unknown' strings"""
+
+        check_output.side_effect = helpers.SubprocessError
+
+        output = StringIO()
+
+        with redirect_stderr(output):
+            helpers.print_diagnostic_info()
+
+        output.seek(0)
+
+        self.assertIn('unknown', output.read(), msg=(
+            'Expected "unknown" to be in the error output.'))
+
+    def test_uses_rockyou_by_default(self):
+        with patch.object(cli, 'DEFAULT_WORDLIST_PATH', new=FILE_MISSING):
+            stdout, stderr, code = self.call(FILE)
+            self.assertNotEqual(code, 0, msg='Wordlist should not exist on the system')
+
+        with patch.object(cli, 'DEFAULT_WORDLIST_PATH', new=ROCKYOU_ONLY_GZ):
+            stdout, stderr, code = self.call(FILE)
+            self.assertNotEqual(code, 0, msg='Wordlist should exist on the system, but gzipped')
+
+        # Should be successful
+        directory = mkdtemp(prefix='stegcracker_')
+        file = directory + '/' + str(uuid4()) + '.txt'
+
+        try:
+            with patch.object(cli, 'DEFAULT_WORDLIST_PATH', new=WORDLIST):
+                stdout, stderr, code = self.call(FILE, '--output', file)
+                self.assertEqual(code, 0, msg='Wordlist should exist on the system (and use the default)')
+
+            self.assertTrue(os.path.isfile(file))
 
         finally:
             shutil.rmtree(directory, ignore_errors=True)

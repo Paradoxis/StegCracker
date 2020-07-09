@@ -9,6 +9,9 @@ from stegcracker.cracker import Cracker
 from stegcracker.helpers import error, wc, handle_interrupt, DevNull, log, CustomHelpFormatter
 
 
+DEFAULT_WORDLIST_PATH = '/usr/share/wordlists/rockyou.txt'
+
+
 @handle_interrupt
 def main():
     """Main entry point of the application"""
@@ -42,7 +45,7 @@ def main():
         'Wordlist containing the one or more passwords (one password per line). '
         'If no password list is supplied, this will default to the rockyou.txt '
         'wordlist on Kali Linux.'
-    ), default='/usr/share/wordlists/rockyou.txt')
+    ), default=None)
 
     args.add_argument('-o', '--output', default=None, help=(
         'Output file location, this will be the file the data will be written '
@@ -86,6 +89,23 @@ def main():
             'your current PATH, please install it using: "apt-get install '
             'steghide -y" or by downloading it from the official code '
             'repository: http://steghide.sourceforge.net/')
+
+    if args.wordlist is None:
+        if isfile(DEFAULT_WORDLIST_PATH):
+            log('No wordlist was specified, using default rockyou.txt wordlist.')
+            args.wordlist = DEFAULT_WORDLIST_PATH
+
+        elif isfile(DEFAULT_WORDLIST_PATH + '.gz'):
+            return error(
+                f'No wordlist was specified, but a gzipped variant of the '
+                f'rockyou.txt wordlist was found on your system. If you wish '
+                f'to use it, please decompress it first using the following command: '
+                f'gzip -d {DEFAULT_WORDLIST_PATH}.gz')
+
+        else:
+            return error(
+                'No wordlist was specified. '
+                'For more help, please run: stegcracker --help')
 
     if isfile(output):
         return error(f'Output file {output!r} already exists!')
