@@ -43,33 +43,33 @@ $ pip3 install stegcracker -U --force-reinstall
 ## Example
 
 ![demo](https://github.com/Paradoxis/StegCracker/raw/master/stegcracker.gif)
-
-## Upgrading from 1.X
-If you're upgrading StegCracker from the original 1.X release, please remove the existing version first:
-
-```
-$ sudo rm --force $(which stegcracker)
-```
-
+ 
 ## FAQ / Troubleshooting
 
 * I can't install the tool with `pip3` but python 3.6+ is installed
     * Your pip binary might be using a different version of Python. Try installing it 
       directly through Python like so (replace "X" with your minor version, eg: `python3.6`): 
       `python3.X -m pip install -U stegcracker`
+      
+* I'm using StegCracker 1.X, how do I upgrade?
+    * If you're upgrading StegCracker from the original 1.X release, please 
+      remove the existing version first using: `sudo rm --force $(which stegcracker)`
 
-* Can I run this tool on other systems? 
-    * Yes, as long as you have a valid version of Python 3.6 and steghide in your path
-      it *should* work. Please note that the tool has officially been tested on Kali Linux, all
-      other platforms might be unstable. But if you find a bug on another distro, please
-      submit an issue and I'll see what I can do *(please fill in the template too)*.
+* I want to run an older version of StegCracker, how do I obtain a copy?
+    * While I recommended using the latest and greatest version, you might want 
+      to install an older version of StegCracker. You can do this
+      by checking out the [releases](https://github.com/Paradoxis/StegCracker/releases) 
+      page. _(Note: all issues or pull requests regarding this version will be be ignored)_.
 
-## Looking for the old version?
-While I recommended using the latest and greatest version, you might want to install the older 
-version of StegCracker (you might not be able to install Python 3.6 on your platform, 
-or you're just feeling nostalgic, I don't blame you). You can download it from the 
-[v1.0.0 tag](https://github.com/Paradoxis/StegCracker/blob/v1.0.0/stegcracker) 
-_(note: all issues or pull requests regarding this version will be be ignored)_.
+* Can I run this tool on other Linux distro's? 
+    * As long as you have a valid version of Python 3.6 and steghide in your path
+      it *should* work. Please note that the tool has officially been tested on 
+      Kali Linux, all other platforms might be unstable. If you find a bug on 
+      another distro, please submit an issue and I'll see what I can do 
+      _(but do fill in the template as well)_.
+      
+* Are you adding Windows support?
+    * As far as I know there aren't any steghide releases for Windows, so: no
 
 ## License
 Copyright 2019 - Luke Paris (Paradoxis)
