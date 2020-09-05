@@ -46,13 +46,13 @@ $ pip3 install stegcracker -U --force-reinstall
  
 ## FAQ / Troubleshooting
 
-* I can't install the tool with `pip3` but python 3.6+ is installed
+* I can't install the tool with `pip3`, but python 3.6+ is installed
     * Your pip binary might be using a different version of Python. Try installing it 
       directly through Python like so (replace "X" with your minor version, eg: `python3.6`): 
       `python3.X -m pip install -U stegcracker`
       
-* I installed the tool but when running `stegcracker` it says command not found
-    * Chances are yout Python's `bin` directory is not in your PATH envrionment variable. 
+* I installed the tool, but when I run `stegcracker` it just returns 'command not found'
+    * Chances are your Python's `bin` directory is not in your PATH envrionment variable. 
       As a dirty fix you could add the following to your `~/.bashrc` file: `alias stegcracker='python3 -m stegcracker'`
 
 * I'm using StegCracker 1.X, how do I upgrade?
