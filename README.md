@@ -51,6 +51,10 @@ $ pip3 install stegcracker -U --force-reinstall
       directly through Python like so (replace "X" with your minor version, eg: `python3.6`): 
       `python3.X -m pip install -U stegcracker`
       
+* I installed the tool but when running `stegcracker` it says command not found
+    * Chances are yout Python's `bin` directory is not in your PATH envrionment variable. 
+      As a dirty fix you could add the following to your `~/.bashrc` file: `alias stegcracker='python3 -m stegcracker'`
+
 * I'm using StegCracker 1.X, how do I upgrade?
     * If you're upgrading StegCracker from the original 1.X release, please 
       remove the existing version first using: `sudo rm --force $(which stegcracker)`
