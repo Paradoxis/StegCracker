@@ -2,8 +2,10 @@
 [![Build Status](https://travis-ci.org/Paradoxis/StegCracker.svg?branch=master)](https://travis-ci.org/Paradoxis/StegCracker)
 [![PyPI version](https://badge.fury.io/py/stegcracker.svg)](https://badge.fury.io/py/stegcracker)
 [![codecov](https://codecov.io/gh/Paradoxis/StegCracker/branch/master/graph/badge.svg)](https://codecov.io/gh/Paradoxis/StegCracker)
+![pulls](https://img.shields.io/docker/pulls/paradoxis/stegcracker.svg)
 
-Steganography brute-force utility to uncover hidden data inside files.
+Steganography brute-force utility to uncover hidden data inside files. <br>
+Looking for the Docker repository? You can find it [here](https://hub.docker.com/r/paradoxis/stegcracker)
 
 ## Usage
 Using stegcracker is simple, pass a file to it as it's first parameter and 
@@ -15,6 +17,12 @@ different distribution, you can download the rockyou wordlist
 
 ```
 $ stegcracker <file> [<wordlist>]
+```
+
+Or using Docker:
+
+```
+$ docker run -v $(pwd)/data/:/data -it paradoxis/stegcracker example.jpg
 ```
 
 ## Requirements
@@ -31,6 +39,12 @@ To install StegCracker, run the following command:
 
 ```
 $ pip3 install stegcracker
+```
+
+Or pull the latest docker image:
+
+```
+$ docker pull paradoxis/stegcracker
 ```
 
 ## Updating
