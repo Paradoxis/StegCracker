@@ -2,7 +2,7 @@
 [![Build Status](https://travis-ci.org/Paradoxis/StegCracker.svg?branch=master)](https://travis-ci.org/Paradoxis/StegCracker)
 [![PyPI version](https://badge.fury.io/py/stegcracker.svg)](https://badge.fury.io/py/stegcracker)
 [![codecov](https://codecov.io/gh/Paradoxis/StegCracker/branch/master/graph/badge.svg)](https://codecov.io/gh/Paradoxis/StegCracker)
-![pulls](https://img.shields.io/docker/pulls/paradoxis/stegcracker.svg)
+[![pulls](https://img.shields.io/docker/pulls/paradoxis/stegcracker.svg)](https://hub.docker.com/r/paradoxis/stegcracker)
 
 Steganography brute-force utility to uncover hidden data inside files. <br>
 Looking for the Docker repository? You can find it [here](https://hub.docker.com/r/paradoxis/stegcracker)
