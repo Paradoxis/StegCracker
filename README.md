@@ -7,6 +7,26 @@
 Steganography brute-force utility to uncover hidden data inside files. <br>
 Looking for the Docker repository? You can find it [here](https://hub.docker.com/r/paradoxis/stegcracker)
 
+## Deprecation
+Stop wasting time and CPU, use [stegseek](https://github.com/RickdeJager/stegseek) instead! Not convinced? Look at these benchmarks (stolen with love):
+
+| password    | Line        | Stegseek v0.4 | Stegcracker 2.0.9 | Stegbrute v0.1.1 (-t 8) |
+|-------------|-------------|---------------|-------------------|-------------------------|
+| "cassandra" | 1 000       |          0.9s |              3.1s |                    0.7s |
+| "kupal"     | 10 000      |          0.9s |             14.4s |                    7.1s |
+| "sagar"     | 100 000     |          0.9s |           2m23.0s |                 1m21.9s |
+| "budakid1"  | 1 000 000   |          0.9s | [p]      23m50.0s |                13m45.7s |
+| "␣␣␣␣␣␣␣1"  | 14 344 383  |          1.9s | [p]    5h41m52.5s | [p]          3h17m38.0s |
+
+While I've enjoyed building this tool it is and always will built on bad foundations. StegCracker
+started out as a dirty hack for a problem which didn't have any good or easy to use solutions, it's 
+biggest limiting factor however is that it relies on just spamming thousand of subprocess calls a second
+which (despite being optimized slightly with multiple threads) is just horrible for performance.
+
+So, as a result, after three years of managing the project I've decided to
+[pass on the torch](https://github.com/RickdeJager/stegseek/issues/4) and officially
+retire the project. <br> Thanks for the support and thank you [@RickdeJager](https://github.com/RickdeJager) for building a better version :tada:
+
 ## Usage
 Using stegcracker is simple, pass a file to it as it's first parameter and 
 optionally pass the path to a wordlist of passwords to try as it's second 
