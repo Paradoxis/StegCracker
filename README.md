@@ -20,7 +20,7 @@ Stop wasting time and CPU, use [stegseek](https://github.com/RickdeJager/stegsee
 
 While I've enjoyed building this tool it is and always will built on bad foundations. StegCracker
 started out as a dirty hack for a problem which didn't have any good or easy to use solutions, it's 
-biggest limiting factor however is that it relies on just spamming thousand of subprocess calls a second
+biggest limiting factor however is that it relies on just spamming thousand of subprocess calls per second
 which (despite being optimized slightly with multiple threads) is just horrible for performance.
 
 So, as a result, after three years of managing the project I've decided to
