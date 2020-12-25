@@ -25,7 +25,7 @@ which (despite being optimized slightly with multiple threads) is just horrible 
 
 So, as a result, after three years of managing the project I've decided to
 [pass on the torch](https://github.com/RickdeJager/stegseek/issues/4) and officially
-retire the project. <br> Thanks for the support and thank you [@RickdeJager](https://github.com/RickdeJager) for building a better version :tada:
+retire the project. Thanks for the support and thank you [@RickdeJager](https://github.com/RickdeJager) for building a better version :tada:
 
 ## Usage
 Using stegcracker is simple, pass a file to it as it's first parameter and 
