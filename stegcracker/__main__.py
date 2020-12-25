@@ -30,6 +30,12 @@ def main():
     log(f'StegCracker {__version__} - ({__url__})',)
     log(f'Copyright (c) {datetime.now().year} - Luke Paris (Paradoxis)')
     log('')
+    log('StegCracker has been retired following the release of StegSeek, which ')
+    log('will blast through the rockyou.txt wordlist within 1.9 second as opposed ')
+    log('to StegCracker which takes ~5 hours.')
+    log('')
+    log('StegSeek can be found at: https://github.com/RickdeJager/stegseek')
+    log('')
 
     args = ArgumentParser(
         usage='stegcracker <file> [<wordlist>]',
